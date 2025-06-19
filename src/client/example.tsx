@@ -1,7 +1,10 @@
 import { createResource, createSignal, Suspense } from "solid-js";
 import { useClientAPI } from "@yetifrozty/solid-plugin/client";
 
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 const myAsyncLoadingFunction = async (): Promise<string> => {
+  await wait(1000);
   const response = await fetch("https://jsonplaceholder.typicode.com/posts/1")
   const json = await response.json()
   return json.title
