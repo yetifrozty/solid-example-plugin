@@ -12,7 +12,7 @@ export interface SolidExampleServerHooks {
 
 export default function SolidServerPlugin(): SolidExampleServerPlugin {
   let plugins!: any[];
-  let handleSolidRequest: (req: Request, res: Response, serverData: ServerData) => Promise<void>;
+  let handleSolidRequest: (req: Request, res: Response, serverData: ServerData, mode?: "sync" | "async" | "stream") => Promise<void>;
 
   return {
     name: "solid-example-server",
