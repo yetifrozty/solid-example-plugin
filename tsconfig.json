@@ -14,7 +14,7 @@
     "noEmit": true,
     "outDir": "./dist",
     "declaration": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client", "node"],
     "noUncheckedIndexedAccess": false,

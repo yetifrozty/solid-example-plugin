@@ -14,30 +14,18 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "vite build && export SSR=true && vite build && tsc --emitDeclarationOnly --noEmit false"
   },
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "exports": {
     ".": {
       "types": "./src/registerPlugins.d.ts",
       "default": "./src/registerPlugins.js"
     },
     "./client": {
-      "types": "./src/client/client.d.ts",
-      "default": "./src/client/client.tsx"
+      "types": "./src/client/client.ts",
+      "default": "./src/client/client.ts"
     },
     "./server": {
-      "types": "./src/server/server.d.ts",
-      "default": "./src/server/server.ts"
-    },
-    "./dev/client": {
-      "types": "./src/client/client.tsx",
-      "default": "./src/client/client.tsx"
-    },
-    "./dev/server": {
-      "types": "./src/server/server.ts",
-      "default": "./src/server/server.ts"
+      "types": "./src/server/server.tsx",
+      "default": "./src/server/server.tsx"
     }
   },
   "keywords": [],
@@ -46,16 +34,14 @@
   "description": "",
   "peerDependencies": {
     "@yetifrozty/base-plugin-system": "^1.0.0",
-    "@yetifrozty/express-plugin": "^1.0.0",
-    "@yetifrozty/solid-plugin": "^1.0.0",
-    "@yetifrozty/vite-plugin": "^1.0.1",
+    "@yetifrozty/express-plugin": "^1.0.1",
+    "@yetifrozty/vite-plugin": "^1.1.2",
     "solid-js": "^1.9.7"
   },
   "dependencies": {
     "@yetifrozty/base-plugin-system": "^1.0.0",
-    "@yetifrozty/express-plugin": "^1.0.0",
-    "@yetifrozty/solid-plugin": "^1.0.0",
-    "@yetifrozty/vite-plugin": "^1.0.1",
+    "@yetifrozty/express-plugin": "^1.0.1",
+    "@yetifrozty/vite-plugin": "^1.1.2",
     "express": "^5.1.0",
     "solid-js": "^1.9.7"
   },
@@ -64,6 +50,6 @@
     "@types/node": "^24.0.3",
     "typescript": "^5.0.0",
     "vite": "^6.3.5",
-    "vite-plugin-solid": "^2.11.6"
+    "vite-plugin-solid": "^2.11.7"
   }
 }

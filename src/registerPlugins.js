@@ -1,6 +1,6 @@
-import { vitePlugin } from '@yetifrozty/vite-plugin';
-import { expressPlugin } from '@yetifrozty/express-plugin';
-import solidPlugin from '../../solid-plugin/src/registerPlugins.js';
+import solid from 'vite-plugin-solid'
+import { injectExpress } from '@yetifrozty/express-plugin';
+import { injectVite } from '@yetifrozty/vite-plugin';
 
 function solidExamplePlugin() {
   let plugins = [];
@@ -9,27 +9,18 @@ function solidExamplePlugin() {
     name: "solid-example-boot",
     init: async (_plugins) => {
       plugins = _plugins;
-      if (!plugins.find((p) => p.name === "express")) {
-        const express = expressPlugin();
-        plugins.push(express);
-        await express.init?.(plugins);
-      }
-      if (!plugins.find((p) => p.name === "vite")) {
-        const vite = vitePlugin();
-        plugins.push(vite);
-        await vite.init?.(plugins);
-      }
-      if (!plugins.find((p) => p.name === "solid-boot")) {
-        const solidClient = solidPlugin();
-        plugins.push(solidClient);
-        await solidClient.init?.(plugins);
-      }
+      injectExpress(plugins);
+      injectVite(plugins);
     },
     configureVite: async (vite) => {
-      {
-        vite.clientPluginModules.push("@yetifrozty/solid-example-plugin/client");
-        vite.serverPluginModules.push("@yetifrozty/solid-example-plugin/server");
+      vite.clientPluginModules.push("@yetifrozty/solid-example-plugin/client");
+      vite.serverPluginModules.push("@yetifrozty/solid-example-plugin/server");
+      
+      if (!vite.config.plugins) vite.config.plugins = [];
+      if (!vite.config.plugins.find((p) => p.name === "solid")) {
+        vite.config.plugins.push(solid({ssr: true}));
       }
+
       return vite;
     },
     initVite: async () => {
